@@ -1,5 +1,5 @@
 export const authConfig = {
-  providers:[],
+  providers: [],
   pages: {
     signIn: "/login",
   },
@@ -7,11 +7,18 @@ export const authConfig = {
     authorized({ auth, request }) {
       const isLoggedIn = auth?.user;
       const isOnDashboard = request.nextUrl.pathname.startsWith("/dashboard");
+      const isOnHome = request.nextUrl.pathname.startsWith("/");
       if (isOnDashboard) {
         if (isLoggedIn) return true;
         return false;
       } else if (isLoggedIn) {
         return Response.redirect(new URL("/dashboard", request.nextUrl));
+      } else if (isOnHome) {
+        if (isLoggedIn) {
+          return Response.redirect(new URL("/dashboard", request.nextUrl));
+        } else {
+          return false;
+        }
       }
       return true;
     },
