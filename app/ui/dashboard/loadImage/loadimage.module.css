@@ -1,0 +1,14 @@
+.changePhotoButton {
+  /* width: 100%; */
+  background-color: teal;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  border: 1px solid gray;
+  text-align: center;
+  margin: 20px 0 20px 0;
+}
+
+.changePhotoButton input[type="file"] {
+  display: none;
+}

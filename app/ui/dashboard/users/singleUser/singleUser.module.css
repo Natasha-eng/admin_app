@@ -1,0 +1,103 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 20px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: var(--textSoft);
+  height: max-content;
+  margin: auto;
+}
+
+.infoContainer img {
+  width: 200px;
+  height: 200px;
+}
+
+.formContainer {
+  flex: 3;
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.form input,
+.form textarea,
+.form select {
+  padding: 20px;
+  border: 2px solid #2e374a;
+  border-radius: 5px;
+  background-color: var(--bg);
+  color: var(--text);
+  margin: 10px 0px;
+}
+
+.error {
+  margin: 0 10px 20px 10px;
+  color: red;
+}
+
+.form label {
+  font-size: 12px;
+}
+
+.form button {
+  width: 100%;
+  padding: 20px;
+  background-color: teal;
+  color: var(--text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (min-width: 600px) {
+  .infoContainer img {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .form {
+    flex-direction: row;
+  }
+
+  .formInputs {
+    flex: 3;
+  }
+
+  .infoContainer {
+    margin: 0;
+  }
+
+  .imgContainer {
+    width: 300px;
+    height: 300px;
+  }
+}

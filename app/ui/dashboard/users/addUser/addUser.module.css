@@ -1,0 +1,70 @@
+.container {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formInputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.error {
+  margin: 0 10px 20px 10px;
+  color: red;
+}
+
+.form input,
+.form textarea,
+.form select {
+  padding: 30px;
+  background-color: var(--bg);
+  color: var(--text);
+  border: 2px solid #2e374a;
+  border-radius: 5px;
+  margin: 10px 0px;
+}
+.form label {
+  font-size: 12px;
+}
+.form textarea {
+  width: 100%;
+}
+
+.form button {
+  width: 100%;
+  padding: 30px;
+  background-color: teal;
+  color: var(--text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media (min-width: 1000px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .form {
+    flex-direction: row;
+  }
+
+  .formInputs {
+    flex: 3;
+  }
+
+  .infoContainer {
+    margin: 0;
+  }
+
+  .imgContainer {
+    width: 300px;
+  }
+}

@@ -1,0 +1,117 @@
+.container {
+  background-color: var(--bgSoft);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addButton {
+  padding: 10px;
+  background-color: #5d57c9;
+  color: var(--text);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.table td {
+  padding: 10px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userImage {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: var(--text);
+  border: none;
+  cursor: pointer;
+}
+
+.view {
+  background-color: teal;
+}
+
+.delete {
+  background-color: crimson;
+}
+
+.tRowDesktop {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid white;
+}
+
+.tRowMobile {
+  display: none;
+}
+
+.table thead tr {
+  display: table-row;
+}
+
+.active {
+  color: rgb(18, 232, 46);
+}
+
+.passive {
+  color: rgb(237, 30, 19);
+}
+
+.admin {
+  color: rgb(95, 227, 229);
+}
+
+.userInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 600px) {
+  .tRowDesktop {
+    display: none;
+  }
+
+  .tRowMobile {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid white;
+  }
+
+  .table thead tr {
+    display: none;
+  }
+
+  .product {
+    margin-bottom: 10px;
+  }
+
+  .buttons {
+    margin-top: 10px;
+  }
+}
