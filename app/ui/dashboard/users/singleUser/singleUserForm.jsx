@@ -5,6 +5,7 @@ import { useFormState } from "react-dom";
 
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import LoadImage from "../../loadImage/loadImage";
+import SubmitButton from "../../submitButton/submitButton";
 
 const initialState = {
   message: "",
@@ -17,8 +18,9 @@ const SingleUserForm = ({ user }) => {
     <form action={formAction} className={styles.form}>
       <div>
         <LoadImage
-          img={user.img}
-          username={user.username}
+          item={user}
+          // img={user.img}
+          // username={user.username}
           buttonTitle={"Change Profile Photo"}
         />
       </div>
@@ -50,7 +52,7 @@ const SingleUserForm = ({ user }) => {
           {state?.message}
         </div>
 
-        <button>Update</button>
+        <SubmitButton title="Add" />
       </div>
     </form>
   );

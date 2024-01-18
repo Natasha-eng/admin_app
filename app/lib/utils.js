@@ -8,4 +8,16 @@ const trimImageString = (image) => {
   }
 };
 
-export { trimImageString };
+const convertToBase64 = (file) =>
+  new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      res(reader.result);
+    };
+    reader.onerror = () => {
+      rej(console.log("file loading error "));
+    };
+  });
+
+export { trimImageString, convertToBase64 };

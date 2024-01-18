@@ -12,3 +12,7 @@
 .changePhotoButton input[type="file"] {
   display: none;
 }
+
+.img {
+  border-radius: 10px;
+}

@@ -1,25 +1,46 @@
 "use client";
 
 import { updateProduct } from "@/app/lib/actions";
-import { useFormState } from "react-dom";
 import LoadImage from "../../loadImage/loadImage";
+import { useFormState } from "react-dom";
 
 import styles from "./singleProduct.module.css";
+import { convertToBase64, trimImageString } from "@/app/lib/utils";
+import { useEffect, useState } from "react";
+import SubmitButton from "../../submitButton/submitButton";
 
 const initialState = {
   message: "",
 };
 
-const SingleProductForm = ({ product }) => {
-  const [state, formAction] = useFormState(updateProduct, initialState);
+const SingleProductForm = ({ imgTrimmed, product }) => {
+  // let [photoFile, setPhotoFile] = useState(imgTrimmed || "");
+
+  // const updateProductWithPhoto = updateProduct.bind(null, photoFile);
+  const [message, formAction] = useFormState(updateProduct, initialState);
+
+  // const onPhotoSelected = async (e) => {
+  //   if (e.target.files?.length) {
+  //     const file = e.target.files[0];
+  //     console.log("file", file);
+  //     const base64 = await convertToBase64(file);
+  //     setPhotoFile(base64);
+  //   }
+  // };
+
+  // console.log("base64 single prodphotoFile", photoFile);
 
   return (
     <form action={formAction} className={styles.form}>
       <div>
         <div>
           <LoadImage
-            img={product.img}
-            username={product.username}
+            // onPhotoSelected={onPhotoSelected}
+            // photoFile={photoFile}
+            // setPhotoFile={setPhotoFile}
+            // img={photoFile}
+            item={product}
+            // username={product.username}
             buttonTitle={"Change Product Photo"}
           />
         </div>
@@ -62,10 +83,10 @@ const SingleProductForm = ({ product }) => {
         ></textarea>
 
         <div className={styles.error} role="status">
-          {state?.message}
+          {message?.message}
         </div>
 
-        <button>Update</button>
+        <SubmitButton title="Update" />
       </div>
     </form>
   );

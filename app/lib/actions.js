@@ -1,11 +1,24 @@
 "use server";
 
+import fs from "fs";
+
 import { revalidatePath } from "next/cache";
 import { base } from "./db";
 import { redirect } from "next/navigation";
 import bcrypt from "bcrypt";
 import { signIn } from "../auth";
 import { getMinifiedRecord } from "./data";
+
+const convertImageToBase64URL = (filename, imageType = "png") => {
+  try {
+    const buffer = fs.readFileSync(filename);
+    const base64String = Buffer.from(buffer).toString("base64");
+    // console.log(`base64String`, base64String.slice(0, 100));
+    return `data:image/${imageType};base64,${base64String}`;
+  } catch (error) {
+    throw new Error(`file ${filename} no exist ❌`);
+  }
+};
 
 export const addUser = async (prevState, formData) => {
   const {
@@ -100,14 +113,21 @@ export const updateUser = async (prevState, formData) => {
 };
 
 export const addProduct = async (prevState, formData) => {
-  const { title, desc, price, stock, color, size, cat, profileImg, img } =
-    Object.fromEntries(formData);
+  let { title, desc, price, stock, color, size, cat, img, profileImg } =
+    Object.fromEntries(formData.entries());
 
-  if (img.size > 100000) {
+  console.log("add formData", formData);
+  // console.log("add product img", img);
+
+  console.log("add product profileImg", profileImg);
+  console.log("add product prevState", prevState);
+
+  const strImg = JSON.stringify(profileImg);
+
+  if (strImg.length > 100000) {
     return { message: "The image size is too big. Failed to add product!" };
   }
 
-  const strImg = JSON.stringify(profileImg);
   try {
     const newProductData = await base("products").create(
       {
@@ -127,29 +147,41 @@ export const addProduct = async (prevState, formData) => {
     const newProduct = getMinifiedRecord(newProductData);
   } catch (err) {
     console.log(err);
-    throw new Error("Failed to create product!");
+    return { message: `Failed to create product! ${err}` };
   }
 
   revalidatePath("/dashboard/products");
   redirect("/dashboard/products");
 };
-
+// photoFile
 export const updateProduct = async (prevState, formData) => {
-  const { id, title, desc, price, stock, brand, cat, color, profileImg, img } =
-    Object.fromEntries(formData);
+  console.log("prevState!", prevState);
+  console.log("formData!", formData);
+  // console.log("photoFile!", photoFile);
 
-  if (img.size > 100000) {
+  const { id, title, desc, price, stock, cat, color, profileImg, img } =
+    Object.fromEntries(formData.entries());
+  // console.log("add product profileImg", profileImg);
+  // console.log("update formData entries", formData.entries());
+  // console.log("update photoFile bind", photoFile);
+
+  const strImg = JSON.stringify(profileImg); //photoFile
+
+  // console.log("img", img);
+  console.log("update strImg.length", strImg.length);
+
+  if (strImg.length > 100000) {
     return { message: "The image size is too big. Failed to update product!" };
   }
 
-  const strImg = JSON.stringify(profileImg);
+  // console.log("update strImg with profileImg", strImg);
+
   try {
     const updateFields = {
       title,
       desc,
       price: price !== "" ? Number(price) : "",
       stock: stock !== "" ? Number(stock) : "",
-      brand,
       category: cat,
       color,
       img: strImg,
@@ -161,14 +193,26 @@ export const updateProduct = async (prevState, formData) => {
         delete updateFields[key]
     );
 
-    const updatedProductData = await base("products").update(id, {
-      ...updateFields,
-    });
+    // console.log("updateFields", updateFields);
+
+    const updatedProductData = await base("products").update(
+      id,
+      {
+        ...updateFields,
+      },
+      { typecast: true }
+    );
 
     const updatedProduct = getMinifiedRecord(updatedProductData);
+
+    if (!updatedProduct.title) {
+      return { message: "Failed to update product!" };
+    }
+
+    // console.log("updated product", updatedProduct);
   } catch (err) {
     console.log(err);
-    throw new Error("Failed to update product!");
+    return { message: `Failed to update product! ${err}` };
   }
 
   revalidatePath("/dashboard/products");

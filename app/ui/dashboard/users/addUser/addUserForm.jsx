@@ -5,6 +5,7 @@ import LoadImage from "../../loadImage/loadImage";
 import { addUser } from "@/app/lib/actions";
 
 import styles from "./addUser.module.css";
+import SubmitButton from "../../submitButton/submitButton";
 
 const initialState = {
   message: "",
@@ -53,7 +54,7 @@ const AddUserForm = () => {
           {state?.message}
         </div>
 
-        <button type="submit">Submit</button>
+        <SubmitButton title="Add" />
       </div>
     </form>
   );

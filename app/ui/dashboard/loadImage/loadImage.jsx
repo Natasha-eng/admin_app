@@ -1,13 +1,20 @@
 "use client";
 
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
+import imgStyles from "./loadimage.module.css";
 import LoadImageButton from "./loadImageButton";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { trimImageString } from "@/app/lib/utils";
-
-const LoadImage = ({ img, username, buttonTitle }) => {
-  const imgFile = trimImageString(img);
+// onPhotoSelected,
+//   photoFile,
+const LoadImage = ({
+  // img,
+  // username,
+  item,
+  buttonTitle,
+}) => {
+  const imgFile = item && trimImageString(item.img);
   const [photoFile, setPhotoFile] = useState(imgFile || "");
 
   const convertToBase64 = (file) =>
@@ -23,8 +30,10 @@ const LoadImage = ({ img, username, buttonTitle }) => {
     });
 
   const onPhotoSelected = async (e) => {
+    console.log("called");
     if (e.target.files?.length) {
       const file = e.target.files[0];
+      console.log("file", file);
       const base64 = await convertToBase64(file);
       setPhotoFile(base64);
     }
@@ -41,6 +50,7 @@ const LoadImage = ({ img, username, buttonTitle }) => {
         alt="avatar"
         width={300}
         height={300}
+        className={imgStyles.img}
       />
 
       <LoadImageButton
@@ -49,7 +59,7 @@ const LoadImage = ({ img, username, buttonTitle }) => {
         buttonTitle={buttonTitle}
       />
 
-      <div>{username || ""}</div>
+      <div>{item?.username || item?.title || ""}</div>
     </div>
   );
 };

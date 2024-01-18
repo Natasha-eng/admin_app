@@ -7,6 +7,8 @@ import { fetchProducts } from "@/app/lib/data";
 import { deleteProduct } from "@/app/lib/actions";
 import { trimImageString } from "@/app/lib/utils";
 
+export const dynamic = "force-dynamic";
+
 const ProductsPage = async ({ searchParams }) => {
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
