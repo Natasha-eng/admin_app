@@ -8,12 +8,10 @@ import SingleProductForm from "@/app/ui/dashboard/products/singleProduct/singleP
 const SingleProductPage = async ({ params }) => {
   const { id } = params;
   const product = await fetchProduct(id);
-  // const imgTrimmed = trimImageString(product.img);
 
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
-        {/* imgTrimmed={imgTrimmed} */}
         <SingleProductForm product={product} />
       </div>
     </div>

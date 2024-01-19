@@ -17,12 +17,7 @@ const SingleUserForm = ({ user }) => {
   return (
     <form action={formAction} className={styles.form}>
       <div>
-        <LoadImage
-          item={user}
-          // img={user.img}
-          // username={user.username}
-          buttonTitle={"Change Profile Photo"}
-        />
+        <LoadImage item={user} buttonTitle={"Change Profile Photo"} />
       </div>
 
       <div className={styles.formInputs}>

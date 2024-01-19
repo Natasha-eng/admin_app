@@ -23,8 +23,8 @@ const UsersPage = async ({ searchParams }) => {
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a user..." />
-        <Link href="/dashboard/users/add">
-          <button className={styles.addButton}>Add New</button>
+        <Link href="/dashboard/users/add" className={styles.addButton}>
+          Add New
         </Link>
       </div>
       <table className={styles.table}>
@@ -83,10 +83,11 @@ const UsersPage = async ({ searchParams }) => {
 
                   <td>
                     <div className={styles.buttons}>
-                      <Link href={`/dashboard/users/${user.recordId}`}>
-                        <button className={`${styles.button} ${styles.view}`}>
-                          View
-                        </button>
+                      <Link
+                        href={`/dashboard/users/${user.recordId}`}
+                        className={`${styles.button} ${styles.view}`}
+                      >
+                        View
                       </Link>
                       <form action={deleteUser}>
                         <input type="hidden" name="id" value={user.recordId} />

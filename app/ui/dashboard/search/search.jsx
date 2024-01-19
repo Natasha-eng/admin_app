@@ -20,7 +20,7 @@ const Search = ({ placeholder }) => {
     } else {
       params.delete("q");
     }
-    replace(`${pathname}?${params}`);
+    replace(`${pathname}?${params}`.toLowerCase());
   }, 300);
 
   return (

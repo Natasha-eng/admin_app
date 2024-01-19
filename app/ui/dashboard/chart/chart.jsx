@@ -55,8 +55,6 @@ const Chart = () => {
       <h2 className={styles.title}>Weekly Recap</h2>
       <ResponsiveContainer>
         <LineChart
-          // width={500}
-          // height={300}
           data={data}
           margin={{
             top: 5,

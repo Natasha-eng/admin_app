@@ -1,21 +1,15 @@
 "use client";
-
 import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css";
 import imgStyles from "./loadimage.module.css";
 import LoadImageButton from "./loadImageButton";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { trimImageString } from "@/app/lib/utils";
-// onPhotoSelected,
-//   photoFile,
-const LoadImage = ({
-  // img,
-  // username,
-  item,
-  buttonTitle,
-}) => {
+
+const LoadImage = ({ item, buttonTitle }) => {
   const imgFile = item && trimImageString(item.img);
   const [photoFile, setPhotoFile] = useState(imgFile || "");
+  const [sharpImg, setSharpImg] = useState("");
 
   const convertToBase64 = (file) =>
     new Promise((res, rej) => {
@@ -30,10 +24,9 @@ const LoadImage = ({
     });
 
   const onPhotoSelected = async (e) => {
-    console.log("called");
     if (e.target.files?.length) {
       const file = e.target.files[0];
-      console.log("file", file);
+
       const base64 = await convertToBase64(file);
       setPhotoFile(base64);
     }

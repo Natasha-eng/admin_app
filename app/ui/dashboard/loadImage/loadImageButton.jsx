@@ -6,13 +6,7 @@ const LoadImageButton = ({ onPhotoSelected, photoFile, buttonTitle }) => {
   return (
     <label htmlFor="fileImg" className={styles.changePhotoButton}>
       {buttonTitle}
-      <input
-        type="file"
-        name="img"
-        id="fileImg"
-        // accept="image/*"
-        onChange={onPhotoSelected}
-      />
+      <input type="file" name="img" id="fileImg" onChange={onPhotoSelected} />
       <input
         type="hidden"
         name="profileImg"

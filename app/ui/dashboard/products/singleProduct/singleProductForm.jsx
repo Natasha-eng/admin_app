@@ -14,35 +14,13 @@ const initialState = {
 };
 
 const SingleProductForm = ({ imgTrimmed, product }) => {
-  // let [photoFile, setPhotoFile] = useState(imgTrimmed || "");
-
-  // const updateProductWithPhoto = updateProduct.bind(null, photoFile);
   const [message, formAction] = useFormState(updateProduct, initialState);
-
-  // const onPhotoSelected = async (e) => {
-  //   if (e.target.files?.length) {
-  //     const file = e.target.files[0];
-  //     console.log("file", file);
-  //     const base64 = await convertToBase64(file);
-  //     setPhotoFile(base64);
-  //   }
-  // };
-
-  // console.log("base64 single prodphotoFile", photoFile);
 
   return (
     <form action={formAction} className={styles.form}>
       <div>
         <div>
-          <LoadImage
-            // onPhotoSelected={onPhotoSelected}
-            // photoFile={photoFile}
-            // setPhotoFile={setPhotoFile}
-            // img={photoFile}
-            item={product}
-            // username={product.username}
-            buttonTitle={"Change Product Photo"}
-          />
+          <LoadImage item={product} buttonTitle={"Change Product Photo"} />
         </div>
       </div>
 

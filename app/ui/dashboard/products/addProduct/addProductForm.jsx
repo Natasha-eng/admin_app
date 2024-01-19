@@ -14,38 +14,14 @@ const initialState = {
 };
 
 const AddProductForm = () => {
-  // const [photoFile, setPhotoFile] = useState("");
-  // const addProductWithPhoto = addProduct.bind(null, photoFile);
   const [message, formAction] = useFormState(addProduct, {
     initialState,
   });
 
-  // const imgFile = trimImageString(img);
-
-  // console.log("base64 photoFile", photoFile);
-
-  // const onPhotoSelected = async (e) => {
-  //   if (e.target.files?.length) {
-  //     const file = e.target.files[0];
-  //     console.log("file", file);
-  //     const base64 = await convertToBase64(file);
-  //     setPhotoFile(base64);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setPhotoFile(photoFile);
-  // }, [photoFile]);
-
   return (
     <form action={formAction} className={styles.form}>
       <div>
-        <LoadImage
-          // onPhotoSelected={onPhotoSelected}
-          // photoFile={photoFile}
-          // setPhotoFile={setPhotoFile}
-          buttonTitle={"Add Product Photo"}
-        />
+        <LoadImage buttonTitle={"Add Product Photo"} />
       </div>
 
       <div className={styles.formInputs}>
