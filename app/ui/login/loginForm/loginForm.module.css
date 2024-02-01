@@ -29,3 +29,7 @@
   cursor: pointer;
   border-radius: 5px;
 }
+
+.form .submit {
+  background-color: rgb(143, 154, 154);
+}

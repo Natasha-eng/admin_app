@@ -60,7 +60,7 @@ export const fetchProducts = async (q) => {
       return fetchFilteredProducts(q);
     } else {
       const productsData = await base("products").select().firstPage();
-      const count = productsData.length;
+      const count = Math.ceil(productsData.length);
 
       const products = getMinifiedRecords(productsData);
       return { count, products };
